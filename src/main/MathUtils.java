@@ -42,7 +42,7 @@ public class MathUtils {
     public static void calculaDerivada() {
         Scanner scanner = new Scanner(System.in);
 
-        // Solicitar ao usuário que escolha a função
+       
         System.out.println("Escolha a função para a qual deseja calcular a derivada:");
         System.out.println("1. Seno");
         System.out.println("2. Cosseno");
@@ -53,7 +53,7 @@ public class MathUtils {
         Function<Double, Double> f = null;
         String nomeFuncao = "";
 
-        // Definir a função escolhida pelo usuário
+        
         switch (escolha) {
             case 1:
                 f = x -> Math.sin(x);
@@ -73,17 +73,17 @@ public class MathUtils {
                 return;
         }
 
-        // Solicitar ao usuário o ponto onde deseja calcular a derivada
+        
         System.out.print("Digite o ponto no qual deseja calcular a derivada: ");
         double x = scanner.nextDouble();
 
-        // Precisão da diferenciação numérica (tamanho do h)
+        
         double h = 0.0001;
 
-        // Calculando a derivada usando a fórmula da diferenciação numérica (aproximação de derivada)
+       
         double derivada = (f.apply(x + h) - f.apply(x)) / h;
 
-        // Imprimindo o resultado
+        
         System.out.println("O valor da derivada de " + nomeFuncao + "(x) em x = " + x + " é: " + derivada);
 
         scanner.nextLine();
