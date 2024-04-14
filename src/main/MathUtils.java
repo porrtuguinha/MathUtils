@@ -14,7 +14,8 @@ public class MathUtils {
 	            System.out.println("1. Equação de segundo grau");
 	            System.out.println("2. Cálculo de integral");
 	            System.out.println("3. Cálculo de derivada");
-	            System.out.println("4. Sair");
+	            System.out.println("4. calculo de erlang");
+	            System.out.println("5. Sair");
 	                escolha = scanner.nextInt();
 	              
 	            switch (escolha) {
@@ -28,6 +29,9 @@ public class MathUtils {
 	                    calculaDerivada();
 	                    break;
 	                case 4:
+	                   calcularErlang();
+	                    break;
+	                case 5:
 	                    System.out.println("Programa fechado");
 	                    break;
 	                default:
@@ -143,4 +147,37 @@ public class MathUtils {
 
         scanner.nextLine();
     }
+    public static void calcularErlang() {
+    	 Scanner scanner = new Scanner(System.in);
+    	    
+    	   
+    	    System.out.print("Digite o número de canais disponíveis: ");
+    	    int numChannels = scanner.nextInt();
+    	    
+    	    
+    	    System.out.print("Digite o tráfego em Erlang: ");
+    	    double traffic = scanner.nextDouble();
+    	    
+    
+        if (numChannels <= 0 || traffic < 0) {
+            throw new IllegalArgumentException("O número de canais deve ser maior que zero e o tráfego não pode ser negativo.");
+        }
+        
+        double result = 0.0;
+        double numerator = 1.0;
+        double denominator = 1.0;
+        
+       
+        for (int i = 0; i < numChannels; i++) {
+            numerator *= traffic;
+            denominator += numerator;
+        }
+        
+       
+        result = numerator / denominator;
+      System.out.println("Probabilidade de bloqueio : " + result);
+      scanner.nextLine();
+    }
+      
 }
+   
