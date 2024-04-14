@@ -29,7 +29,7 @@ public class MathUtils {
 	                    calculaDerivada();
 	                    break;
 	                case 4:
-	                   calcularErlang();
+	                   calcularErlangC();
 	                    break;
 	                case 5:
 	                    System.out.println("Programa fechado");
@@ -147,7 +147,7 @@ public class MathUtils {
 
         scanner.nextLine();
     }
-    public static void calcularErlang() {
+    public static void calcularErlangC() {
     	 Scanner scanner = new Scanner(System.in);
     	    
     	   
@@ -159,25 +159,55 @@ public class MathUtils {
     	    double traffic = scanner.nextDouble();
     	    
     
-        if (numChannels <= 0 || traffic < 0) {
-            throw new IllegalArgumentException("O número de canais deve ser maior que zero e o tráfego não pode ser negativo.");
+    	    if (numChannels <= 0 || traffic < 0) {
+                throw new IllegalArgumentException("O número de canais deve ser maior que zero e o tráfego não pode ser negativo.");
+            }
+            
+            
+            int maxIterations = 1000;
+            
+          
+            double epsilon = 0.000001; 
+            
+           
+            double prevC = 0.0;
+            double currC = 0.0;
+            double lambda = numChannels * traffic;
+            
+           
+            for (int i = 0; i < maxIterations; i++) {
+                double numerator = Math.pow(lambda, numChannels) / fatorial(numChannels);
+                double denominator = 0.0;
+                for (int n = 0; n < numChannels; n++) {
+                    denominator += Math.pow(lambda, n) / fatorial(n);
+                }
+                denominator += numerator / (fatorial(numChannels) * (numChannels - lambda));
+                currC = numerator / denominator;
+                
+               
+                if (Math.abs(currC - prevC) < epsilon) {
+                    break;
+                }
+                
+                prevC = currC;
+            }
+            System.out.println("Número médio de canais necessários : " + currC);
+            scanner.nextLine();
+            
+            
         }
         
-        double result = 0.0;
-        double numerator = 1.0;
-        double denominator = 1.0;
-        
        
-        for (int i = 0; i < numChannels; i++) {
-            numerator *= traffic;
-            denominator += numerator;
+        public static int fatorial(int n) {
+            if (n == 0) {
+                return 1;
+            }
+            int result = 1;
+            for (int i = 1; i <= n; i++) {
+                result *= i;
+            }
+            return result;
         }
-        
-       
-        result = numerator / denominator;
-      System.out.println("Probabilidade de bloqueio : " + result);
-      scanner.nextLine();
-    }
       
 }
    
