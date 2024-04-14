@@ -8,7 +8,7 @@ public class MathUtils {
 	 public static void main(String[] args) {
 	        Scanner scanner = new Scanner(System.in);
 	        int escolha = 0;
-	        while (escolha != 4) {
+	        while (escolha != 5) {
 	            System.out.println("Boas vindas ao MathUtils");
 	            System.out.println("Selecione qual operação deseja realizar:");
 	            System.out.println("1. Equação de segundo grau");
